@@ -18,3 +18,39 @@ Objetivos Específicos:
 
 #OE4 (Caracterización Estructural): Modelar la estructura terciaria (3D) de la proteína predicha y analizar sus dominios funcionales en comparación con estructuras cristalograficas conocidas.
 
+###ESTRATEGIAS: 
+#Genomica comparativa: Numero de secuencias (especies) : 5 a 7
+#Tarjet- B. brazili
+#Referencia - B. jararaca (jararhagin)
+#Secuencias hermanas - B. atrox , B. asper
+#Outgroup - Crotalus durissus o Lachesis muta. Para rootear el arbol y definir la relacion evolutiva
+
+
+
+##PIPELINE:
+#Trimming
+#Ensamblaje del transcriptoma
+#Local Blast- Usando la secuencia del gen de referencia de B. jararaca 
+#Alineamiento múltiple
+
+
+#REPOSITORIOS A CLONAR
+
+
+##SRA Toolkit: (Ya instalado) Para descarga de datos.
+
+##FastQC: Diagnóstico de calidad.
+
+#Source: apt-get install fastqc
+
+##Trimmomatic: Recorte de secuencias.
+
+#Source: usadellab/Trimmomatic (GitHub) o vía apt-get.
+
+##SPAdes: Ensamblador.
+
+#Source: ablab/spades (GitHub) o binarios precompilados.
+
+##NCBI-BLAST+: Motor de búsqueda local.
+
+#Source: ncbi/blast_plus_docs (GitHub) o vía apt-get.
