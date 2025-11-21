@@ -1,0 +1,36 @@
+# --- 1. INSTALACIÓN DE HERRAMIENTAS DE BIOINFORMÁTICA ---
+print("⚙️ Instalando Bioinformática Stack (SRA-Toolkit, FastQC, Trimmomatic)...")
+!apt-get update -qq
+!apt-get install -y sra-toolkit fastqc trimmomatic -qq
+!pip install biopython -q
+print("✅ Instalación completada.\n")
+
+# --- 2. OBTENCIÓN DE LA REFERENCIA (BAIT) ---
+import os
+from Bio import Entrez, SeqIO
+
+# Configura tu email para NCBI (Requisito ético)
+Entrez.email = "bioinfo_consultor@proyecto.com" 
+
+# Directorios de trabajo
+DIRS = {
+    "ref": "/content/referencias",
+    "raw": "/content/raw_data",
+    "clean": "/content/clean_data",
+    "qc": "/content/qc_reports"
+}
+for d in DIRS.values(): os.makedirs(d, exist_ok=True)
+
+# Descarga de la referencia (Jararhagina - B. jararaca)
+BAIT_ID = "AF056025.1"
+bait_path = os.path.join(DIRS["ref"], "bait_jararhagin.fasta")
+
+print(f"🎣 Descargando secuencia referencia (Bait): {BAIT_ID}...")
+try:
+    with Entrez.efetch(db="nucleotide", id=BAIT_ID, rettype="fasta", retmode="text") as handle:
+        record = SeqIO.read(handle, "fasta")
+        SeqIO.write(record, bait_path, "fasta")
+    print(f"✅ Referencia guardada en: {bait_path}")
+    print(f"   Longitud: {len(record.seq)} pb | Header: {record.description}")
+except Exception as e:
+    print(f"❌ Error descargando referencia: {e}")
