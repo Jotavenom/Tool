@@ -1,3 +1,3 @@
-# Tool
+#Herramientas Bioinformáticas
 
-## Clases de Bioinformática - Código
+##### PROYECTO DE CURSO
